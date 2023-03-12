@@ -5,3 +5,7 @@
 pyvenv.cfg
 .cache
 src/__pycache__/
+
+
+#hide the virtual env
+discord_bot
