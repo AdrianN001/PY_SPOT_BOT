@@ -21,13 +21,15 @@ async def on_ready():
     print("Discord bot started")
 
 @client.command()
-async def view(ctx, *, user_name):
+async def analize(ctx, *, user_name):
+    if not user_name: 
+        ctx.reply("Felhasználása: \n analize {felhasználónév}")
 
     playlist = get_playlist(user_name)
      
-    view = Spotify_DropdownView( playlist ,"Chose a playlist pls")
+    view = Spotify_DropdownView( user_name, playlist ,"Chose a playlist pls")
 
-    await ctx.send("Valami", view=view)
+    await ctx.send("Válaszd ki a playlistet", view=view)
 
 @client.command()
 async def hello(ctx):
