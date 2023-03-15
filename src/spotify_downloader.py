@@ -17,7 +17,7 @@ class SpotifyDownloader:
         
         res = requests.get(self.url)
 
-        soup = bs4.BeautifulSoup(res.text, features="lxml")
+        soup = bs4.BeautifulSoup(res.text)
 
         html_title = soup.find_all("title")[0]
 

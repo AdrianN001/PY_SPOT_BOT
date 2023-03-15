@@ -5,6 +5,8 @@
 pyvenv.cfg
 .cache
 src/__pycache__/
+/etc
+/share
 
 
 #hide the virtual env
