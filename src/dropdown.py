@@ -21,8 +21,6 @@ class Spotify_Dropdown(discord.ui.Select):
 
     async def callback(self, interaction: discord.Interaction):
         from src.spoti import get_track_of_playlist, analize_tracks, format_analized_output, build_embed
-        print(self.init_options)
-        print(self.user_name)
         
         for name, id, emoji in self.init_options:
             if name == self.values[0]:
@@ -30,19 +28,11 @@ class Spotify_Dropdown(discord.ui.Select):
         
         await interaction.response.send_message(f'Calculating')
 
-        for i in range(25): 
-            #  LEGESLEGROSSZABB MEGVALOSITAS 
-            await asyncio.sleep(0.1)
-            await interaction.edit_original_response(content = f"Calculating{'.' * (i % 4)}")
-
         tracks = get_track_of_playlist(self.user_name,self.chosen_id)
 
-        print(tracks)
-
-        unformated_ouput = analize_tracks(tracks)
+        unformated_ouput = analize_tracks(tuple(tracks))  # Cache-ing
 
         formated_output = format_analized_output(unformated_ouput)
-        print(formated_output)
 
         await interaction.edit_original_response(embed=build_embed(formated_output), content="Done <3")
 

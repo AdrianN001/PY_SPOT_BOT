@@ -1,9 +1,24 @@
 import random
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
-
 import os
 import discord
+
+
+def cached_function(function):
+    memo = {}
+    def wrapper(*args):
+        print(args)
+        print(memo)
+        if args in memo:
+            print("FOUND")
+            return memo[args]
+        else:
+            return_value = function(*args)
+            memo[args] = return_value
+            return return_value
+    return wrapper
+
 
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ["SPOTIPY_CLIENT_ID"],
                                                client_secret=os.environ["SPOTIPY_CLIENT_SECRET"],
@@ -11,7 +26,8 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ["SPOTIPY_CLI
                                                scope="playlist-modify-private playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public"))
 sp.trace = False
 
-def analize_tracks(tracks: list[str]) -> list: 
+@cached_function
+def analize_tracks(tracks: tuple[str]) -> list: 
     playlist_features_list = ["danceability","energy","key","loudness","mode", "speechiness","instrumentalness","liveness","valence","tempo", "duration_ms","time_signature"]
 
     playlist_features = {}
@@ -41,7 +57,8 @@ def get_playlist(user_name):
 
     return choices
 
-def get_track_of_playlist(user_name: str,playlist_id: str) -> list: 
+@cached_function
+def get_track_of_playlist(user_name: str, playlist_id: str) -> list: 
     return [ track["track"]["id"] for track in sp.user_playlist_tracks(user_name,playlist_id)["items"]]
 
 
@@ -64,23 +81,30 @@ def format_analized_output(output: dict) -> dict:
           
     return formated_output
 
+def clamp(val: int, min: int, max: int) -> int: 
+    if val > max:
+        return max 
+    elif val < min:
+        return min
+    return val
+
 def build_embed( formated_output: dict ) -> discord.Embed:
     embed = discord.Embed(title = "Spotify analyzer", description="bottom text")
     embed.set_thumbnail(url="https://img-cdn.tnwcdn.com/image?fit=1280%2C720&url=https%3A%2F%2Fcdn0.tnwcdn.com%2Fwp-content%2Fblogs.dir%2F1%2Ffiles%2F2021%2F02%2FSpotify-Lossless-lossy.jpg&signature=2c31bda805a4e9c87ab4ed25e4b3f604")
+    
     for key,value in formated_output.items():
+        circles = ['🔴', "🟢","🟡","🔵"]
         match key: 
             case "valence":
-                circles = ['🔴', "🟢","🟡","🔵"]
                 ball_value = f"{random.choice(circles) * int(value / 10)}{'⚫'* (10-int(value/10))}"[:10]
-                embed.add_field(name=f"HAPPINESS ({value} / 100)", value=ball_value, inline=False)
+                embed.add_field(name=f"Happiness ({value} / 100)", value=ball_value, inline=False)
             case "tempo":
-                embed.add_field(name="Hajtás", value=f"{value} bpm", inline=False)
+                embed.add_field(name="Átlag hajtás", value=f"{value} bpm", inline=False)
             case "duration":
                 embed.add_field(name="Átlag hossz", value=f"{value} másodperc", inline=False)
             case _:
-                circles = ['🔴', "🟢","🟡","🔵"]
                 ball_value = f"{random.choice(circles) * int(value / 10)}{'⚫'* (10-int(value/10))}"[:10]
-                embed.add_field(name=f"{str(key).upper()} ({value} / 100)", value=ball_value, inline=False)
+                embed.add_field(name=f"{str(key).title()} ({clamp(value,0,100)} / 100)", value=ball_value, inline=False)
     return embed   
 
 
