@@ -3,22 +3,19 @@ import os
 ''' Youtube '''
 import yt_dlp as youtube_dl
 
-
 ''' Spotify '''
-from savify import Savify
-from savify.types import  Format, Quality
-from savify.logger import Logger
-from savify.utils import PathHolder
-
+from src.spotify_downloader import SpotifyDownloader
 
 ''' Soundcloud '''
-from soundcloud_downloader import SoundCloudDownloader
+from src.soundcloud_downloader import SoundCloudDownloader
 
 class Downloader:
 
-    def __init__(self, url: str):
+    def __init__(self, url: str, id:str):
 
         self.url = url 
+        self.id  = id      #  Random name of the file
+
 
         self.__website = ""
 
@@ -32,7 +29,7 @@ class Downloader:
     def __download_mp3_from_youtube(self) -> None:
 
         ydl_opts = {
-            "outtmpl":f"./temp/YT-%(title)s.%(ext)s",   # save to tmp dir
+            "outtmpl":f"./temp/{self.id}/%(title)s.%(ext)s",   # save to tmp dir
             'format': 'bestaudio/best',
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
@@ -44,20 +41,13 @@ class Downloader:
             ydl.download([self.url])
  
     def __download_mp3_from_spotify(self) -> None:
+        spotify_client = SpotifyDownloader(self.url, self.id)
+        spotify_client.run()
 
-
-        logger = Logger(log_location='path/for/logs', log_level=None) # Silent output
-        spotify_client = Savify(    api_credentials=( os.environ.get("SPOTIPY_CLIENT_ID"), os.environ.get("SPOTIPY_CLIENT_SECRET") ),
-                                    quality=Quality.BEST,
-                                    download_format=Format.MP3, 
-                                    path_holder=PathHolder(downloads_path='./temp'),
-                                    logger=logger
-                                     )
-        
-        spotify_client.download(self.url)
+      
 
     def __download_mp3_from_soundcloud(self) -> None:
-        sound_cloud_client = SoundCloudDownloader(self.url)
+        sound_cloud_client = SoundCloudDownloader(self.url, self.id)
         sound_cloud_client.run()
 
     def run(self) -> None:
@@ -70,6 +60,14 @@ class Downloader:
             case "soundcloud":
                 self.__download_mp3_from_soundcloud()
 
+    def delete(self) -> None:
+        '''Clears the mp3 file from the cache'''
+
+        for file in os.listdir("./temp"):
+            if file.startswith(self.id):
+                
+                os.remove(f"./temp/{self.id}/{os.listdir('./temp/' + self.id)[0]}")
+                os.rmdir(f"./temp/{file}")
 
     @property
     def website(self) -> str:

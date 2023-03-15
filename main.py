@@ -6,7 +6,7 @@ import asyncio
 from src.spoti import get_playlist
 from src.dropdown import *
 from src.downloader import Downloader
-
+from string import ascii_letters
 
 intents = discord.Intents.default().all()
 intents.members = True
@@ -32,6 +32,24 @@ async def on_ready():
     print("Discord bot started")
 
 @client.command()
+async def download(ctx, *, url: str) -> None: 
+    id = "".join([random.choice(ascii_letters) for _ in range(20)])
+    dl = Downloader(url, id)
+
+
+    dl.run()
+    await ctx.send(f"Elkezdem a letöltést {dl.website}-ról.")
+
+
+    for file in os.listdir("./temp"):
+        if file.startswith(id):
+            file_name = f"./temp/{id}/" + os.listdir(f"./temp/{id}/")[0]
+            await ctx.send(file=discord.File(file_name))
+            break
+    await asyncio.sleep(5)
+    dl.delete()
+
+@client.command()
 async def analize(ctx, *, user_name):
     cache = {} # cache the Dropdown
 
@@ -42,14 +60,14 @@ async def analize(ctx, *, user_name):
         user_playlist_view = cache[user_name]
     else:
         playlist = get_playlist(user_name)
-        view = Spotify_DropdownView( user_name, playlist ,"Chose a playlist pls")
-        cache[user_name] = view
+        user_playlist_view = Spotify_DropdownView( user_name, playlist ,"Chose a playlist pls")
+        cache[user_name] = user_playlist_view
     
     print(cache)
      
     #view = Spotify_DropdownView( user_name, playlist ,"Chose a playlist pls")
 
-    await ctx.send("Válaszd ki a playlistet", view=view)
+    await ctx.send("Válaszd ki a playlistet", view=user_playlist_view)
 
 @client.command()
 async def hello(ctx):

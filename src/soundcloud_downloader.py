@@ -5,9 +5,10 @@ import yt_dlp as youtube_dl
 
 class SoundCloudDownloader:
 
-    def __init__( self, url: str ):
+    def __init__( self, url: str, id: str ):
 
         self.url = url
+        self.id = id
     
     def __set_title_and_artists( self ) -> None:
         
@@ -40,7 +41,7 @@ class SoundCloudDownloader:
     def run(self) -> None:
         song_url = self.__fetch_youtube_results()
         ydl_opts = {
-            "outtmpl":f"./temp/%(title)s.%(ext)s",   # save to tmp dir
+            "outtmpl":f"./temp/{self.id}/%(title)s.%(ext)s",   # save to tmp dir
             'format': 'bestaudio/best',
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
@@ -51,7 +52,8 @@ class SoundCloudDownloader:
          
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             ydl.download([song_url])
+        
     
 if __name__ == "__main__":
-    SoundCloudDownloader("https://soundcloud.com/user-174889742/szivroham").run()
+    SoundCloudDownloader("https://soundcloud.com/user-174889742/szivroham","asd213").run()
     #SoundCloudDownloader("https://soundcloud.com/horipeti15/majka-curtis-blr-belehalok").fetch_youtube_results()
