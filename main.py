@@ -4,6 +4,7 @@ from discord.ext.commands import Bot,has_permissions
 import os
 from src.spoti import get_playlist
 from src.dropdown import *
+from src.downloader import Downloader
 
 
 intents = discord.Intents.default().all()

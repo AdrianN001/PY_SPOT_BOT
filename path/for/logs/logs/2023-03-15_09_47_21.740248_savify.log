@@ -1,0 +1,62 @@
+[DEBUG]	[download] Downloading playlist: INTERWORLD - METAMORPHOSIS audio
+[DEBUG]	[youtube:search] query "INTERWORLD - METAMORPHOSIS audio": Downloading page 1
+[DEBUG]	[youtube:search] playlist INTERWORLD - METAMORPHOSIS audio: Downloading 1 videos
+[DEBUG]	[download] Downloading video 1 of 1
+[DEBUG]	[youtube] lJvRohYSrZM: Downloading webpage
+[DEBUG]	[youtube] Downloading just video lJvRohYSrZM because of --no-playlist
+[ERROR]	[0;31mERROR:[0m unable to download video data: HTTP Error 403: Forbidden
+[DEBUG]	[download] Finished downloading playlist: INTERWORLD - METAMORPHOSIS audio
+[DEBUG]	[download] Downloading playlist: INTERWORLD - METAMORPHOSIS audio
+[DEBUG]	[youtube:search] query "INTERWORLD - METAMORPHOSIS audio": Downloading page 1
+[DEBUG]	[youtube:search] playlist INTERWORLD - METAMORPHOSIS audio: Downloading 1 videos
+[DEBUG]	[download] Downloading video 1 of 1
+[DEBUG]	[youtube] lJvRohYSrZM: Downloading webpage
+[DEBUG]	[youtube] Downloading just video lJvRohYSrZM because of --no-playlist
+[DEBUG]	[download] Destination: /home/noir_angel/.local/share/Savify/temp/2ksyzVfU0WJoBpu8otr4pz.webm
+[DEBUG]	[K[download]   0.0% of 2.28MiB at  8.59KiB/s ETA 04:31
+[DEBUG]	[K[download]   0.1% of 2.28MiB at 25.70KiB/s ETA 01:30
+[DEBUG]	[K[download]   0.3% of 2.28MiB at 59.83KiB/s ETA 00:38
+[DEBUG]	[K[download]   0.6% of 2.28MiB at 127.91KiB/s ETA 00:18
+[DEBUG]	[K[download]   1.3% of 2.28MiB at 89.58KiB/s ETA 00:25
+[DEBUG]	[K[download]   2.7% of 2.28MiB at 79.79KiB/s ETA 00:28
+[DEBUG]	[K[download]   5.5% of 2.28MiB at 76.55KiB/s ETA 00:28
+[DEBUG]	[K[download]   8.6% of 2.28MiB at 70.28KiB/s ETA 00:30
+[DEBUG]	[K[download]  11.3% of 2.28MiB at 71.36KiB/s ETA 00:28
+[DEBUG]	[K[download]  14.5% of 2.28MiB at 70.66KiB/s ETA 00:28
+[DEBUG]	[K[download]  17.4% of 2.28MiB at 71.90KiB/s ETA 00:26
+[DEBUG]	[K[download]  20.8% of 2.28MiB at 71.84KiB/s ETA 00:25
+[DEBUG]	[K[download]  23.9% of 2.28MiB at 72.86KiB/s ETA 00:24
+[DEBUG]	[K[download]  27.3% of 2.28MiB at 72.77KiB/s ETA 00:23
+[DEBUG]	[K[download]  30.4% of 2.28MiB at 71.97KiB/s ETA 00:22
+[DEBUG]	[K[download]  33.2% of 2.28MiB at 72.27KiB/s ETA 00:21
+[DEBUG]	[K[download]  36.5% of 2.28MiB at 71.94KiB/s ETA 00:20
+[DEBUG]	[K[download]  39.4% of 2.28MiB at 72.33KiB/s ETA 00:19
+[DEBUG]	[K[download]  42.8% of 2.28MiB at 72.18KiB/s ETA 00:18
+[DEBUG]	[K[download]  45.8% of 2.28MiB at 72.70KiB/s ETA 00:17
+[DEBUG]	[K[download]  49.3% of 2.28MiB at 72.57KiB/s ETA 00:16
+[DEBUG]	[K[download]  52.3% of 2.28MiB at 72.04KiB/s ETA 00:15
+[DEBUG]	[K[download]  55.1% of 2.28MiB at 71.95KiB/s ETA 00:14
+[DEBUG]	[K[download]  58.1% of 2.28MiB at 72.37KiB/s ETA 00:13
+[DEBUG]	[K[download]  61.6% of 2.28MiB at 72.44KiB/s ETA 00:12
+[DEBUG]	[K[download]  64.7% of 2.28MiB at 72.14KiB/s ETA 00:11
+[DEBUG]	[K[download]  67.6% of 2.28MiB at 72.27KiB/s ETA 00:10
+[DEBUG]	[K[download]  70.8% of 2.28MiB at 71.90KiB/s ETA 00:09
+[DEBUG]	[K[download]  73.6% of 2.28MiB at 72.01KiB/s ETA 00:08
+[DEBUG]	[K[download]  76.8% of 2.28MiB at 72.46KiB/s ETA 00:07
+[DEBUG]	[K[download]  80.4% of 2.28MiB at 72.05KiB/s ETA 00:06
+[DEBUG]	[K[download]  83.2% of 2.28MiB at 72.07KiB/s ETA 00:05
+[DEBUG]	[K[download]  86.3% of 2.28MiB at 72.38KiB/s ETA 00:04
+[DEBUG]	[K[download]  89.8% of 2.28MiB at 72.46KiB/s ETA 00:03
+[DEBUG]	[K[download]  93.0% of 2.28MiB at 72.29KiB/s ETA 00:02
+[DEBUG]	[K[download]  95.9% of 2.28MiB at 72.41KiB/s ETA 00:01
+[DEBUG]	[K[download]  99.2% of 2.28MiB at 72.31KiB/s ETA 00:00
+[DEBUG]	[K[download] 100.0% of 2.28MiB at 72.57KiB/s ETA 00:00
+[DEBUG]	[K[download] 100% of 2.28MiB in 00:32
+[DEBUG]	[ffmpeg] Destination: /home/noir_angel/.local/share/Savify/temp/2ksyzVfU0WJoBpu8otr4pz.mp3
+[DEBUG]	Deleting original file /home/noir_angel/.local/share/Savify/temp/2ksyzVfU0WJoBpu8otr4pz.webm (pass -k to keep)
+[DEBUG]	[download] Finished downloading playlist: INTERWORLD - METAMORPHOSIS audio
+[INFO]	Downloaded -> INTERWORLD - METAMORPHOSIS
+[INFO]	Cleaning up...
+[INFO]	Download Finished!
+	Completed 1/1 songs in 37s
+
